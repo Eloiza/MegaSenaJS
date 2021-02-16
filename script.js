@@ -34,7 +34,7 @@ $(document).ready(function(){
 		else{
 			//total number in a game
 			if(selected_numbers.length == 6){
-				console.log("Jogo feito :D - Remova algum item")
+				console.log("Jogo pronto");
 				this.checked = false;
 			}
 			else{
@@ -46,4 +46,14 @@ $(document).ready(function(){
 
 	});
 
+	$("#check_button").click(function(){
+		if(selected_numbers.length == 6){
+			console.log("Jogo pronto, vamos conferir B)")
+		}
+		else{
+			var numbers = 6 - selected_numbers.length
+			console.log("Termine o jogo antes de conferir! É preciso adicionar mais " + numbers+ " números para terminar")
+		}
+
+	});
 });
