@@ -6,7 +6,7 @@ Trabalho implementado para a disciplina de Programação WEB
 **Objetivo**: Desenvolver um "conferidor" de loteria (Mega Sena)
 Caracteristicas
 
-- [ ] Ao abrir o link, deve aparecer uma tabela de 6x10 de botões (checkbox, ou qualquer coisa que lembre um volante da mega-sena). Ao clicar um botão, o número correspondente deve ser copiado para um elemento "jogo" abaixo da tabela. Ao clicar no número uma segunda vez, o número deve ser eliminado do elemento "jogo". Limite de números no elemento "jogo": 6. (20 pontos)
+- [X] Ao abrir o link, deve aparecer uma tabela de 6x10 de botões (checkbox, ou qualquer coisa que lembre um volante da mega-sena). Ao clicar um botão, o número correspondente deve ser copiado para um elemento "jogo" abaixo da tabela. Ao clicar no número uma segunda vez, o número deve ser eliminado do elemento "jogo". Limite de números no elemento "jogo": 6. (20 pontos)
 
 - [ ] Criar um botão "conferir" que só será habilitado quando o elemento "jogo" tiver exatamente seis números. (20 pontos)
 
