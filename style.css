@@ -1,1 +1,17 @@
-/*something pretty where*/
+/*something pretty here*/
+html {
+  font-family: sans-serif;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+	padding:10px;
+	text-align: center;
+}
+table{
+	width:50%;
+}
