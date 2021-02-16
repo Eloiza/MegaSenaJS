@@ -35,6 +35,7 @@ $(document).ready(function(){
 			//total number in a game
 			if(selected_numbers.length == 6){
 				console.log("Jogo feito :D - Remova algum item")
+				this.checked = false;
 			}
 			else{
 				selected_numbers.push(this.id);
