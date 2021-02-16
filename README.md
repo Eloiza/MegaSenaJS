@@ -1,4 +1,4 @@
-# MegaSenaJS
+# MegaSenaJS :four_leaf_clover:
 Trabalho implementado para a disciplina de Programação WEB
 
 ## Descrição
