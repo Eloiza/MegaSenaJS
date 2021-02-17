@@ -4,6 +4,7 @@
 <head>
 	<title>Trabalho Megasena</title>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!--Arquivo de estilos css-->
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -11,6 +12,8 @@
 	<!-- Importando jquery-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+	<!-- Importando Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -23,24 +26,35 @@
 </head>
 
 <body>
-	<header>
-		<h1>MegaSena</h1>
+	<header id="header">
+		<div class="container-fluid bg-grey text-center">
+			<h1>MegaSena</h1>
+		</div>
 	</header>
 
-	<p>Escolha os número da sua fezinha</p>
+	<div class="container-fluid text-center">
+		<h2>Descrição</h2>
+		<p>Este é um site conferidor da Megasena. Nele você monta um jogo com seis números e então confere se esse jogo já ganhou alguma vez na megasena, quina ou quadra. Antes de conferir o jogo é importante carregar os dados necessários para a análisa clicando no botão "Carregar", só então poderemos conferir o seu jogo :)</p>
 
-	<table id="game_table">
-		<!-- The game table will be here -->
+	</div>
+
+
+	<table class="table table-hover table-bordered" id="game_table">
+			<!-- The game table will be here -->
 	</table>
 
+
+	<div class="container-fluid text-right">
+		<button type="button" class="btn btn-success" id="check_button">Conferir</button>
+		<button type="button" class="btn btn-info" id="load_button">Carregar</button>
+		<button type="button" class="btn btn-light" id="clear_button">Limpar Jogo</button>
+	</div>
+	
 	<div>
 		<p><b>Jogo:</b></p>
+		<!-- A div to hold the numbers selected until now -->
 		<div id="game_numbers">
 		</div>
-		<button id="check_button">Conferir</button>
-		<button id="load_button">Carregar</button>
-		<button id="clear_button">Limpar Jogo</button>
-		<div id="csv_div"></div>
 
 	</div>
 
