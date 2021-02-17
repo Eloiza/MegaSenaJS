@@ -31,25 +31,39 @@
 	</header>
 
 	<div class="container-fluid text-center">
-		<h2>Descrição</h2>
+		<h2><b>Descrição</b></h2>
 		<p>Este é um site conferidor da Megasena. Nele você monta um jogo com seis números e então confere se esse jogo já ganhou alguma vez na megasena, quina ou quadra. Antes de conferir o jogo é importante carregar os dados necessários para a análisa clicando no botão "Carregar", só então poderemos conferir o seu jogo :)</p>
 
 	</div>
 
+	<div class="container-fluid" id="container-game">
+		<table class="table table-hover table-bordered" id="game_table">
+				<!-- The game table will be here -->
+		</table>
+	</div>
 
-	<table class="table table-hover table-bordered" id="game_table">
-			<!-- The game table will be here -->
-	</table>
-
-
-	<div class="container-fluid text-right">
+	<div class="container-fluid text-right" id="button-container">
 		<button type="button" class="btn btn-success" id="check_button" disabled >Conferir</button>
 		<button type="button" class="btn btn-info" id="load_button">Carregar</button>
 		<button type="button" class="btn btn-light" id="clear_button">Limpar Jogo</button>
 	</div>
+
+	<div>
+		<p><b>Números Selecionados:</b></p>
+		
+		<div id="game_numbers" class="container-fluid">
+			<p>Selecione seis números da tabela para conferir o resultado! </p>
+		</div>
+
+		<p><b>Resultado:</b></p>
+
+		<div id="result_div" class="container-fluid">
+			<p>Veja aqui quais jogos você teria acertado!</p>
+		</div>
+
+	</div>
 	
 	<div>
-		<p><b>Jogo:</b></p>
 		<!-- A div to hold the numbers selected until now -->
 		<div id="game_numbers">
 		</div>

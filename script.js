@@ -6,10 +6,10 @@ function createMegaTable(lin, col){
 	for(i=0; i<6; i++){
 		row += '<tr>';
 		for(j=0; j<10; j++){
-			var checkbox = '<input class="form-check-input" type="checkbox" id=' + item +' value='+ item + '>';
-			checkbox += '<label class="form-check-label" for=' + item + '>' + item + '</label>';
+			var checkbox = '<input class="checkmark" type="checkbox" id=' + item +' value='+ item + '>';
+			checkbox += '<label for=' + item + '>' + item + '</label>';
 
-			row += '<td><div class="form-check">' + checkbox + '</div></td>';
+			row += '<td><div>' + checkbox + '</div></td>';
 			item++;
 		}
 		row += '</tr>';		
@@ -24,6 +24,8 @@ $(document).ready(function(){
 
 	var selected_numbers = []
 	let div_numbers = $("#game_numbers");
+	let div_result = $("#result_div");
+	var game_done = false;
 
 	$("input:checkbox").click(function(){
 		index = selected_numbers.indexOf(this.id);
@@ -31,32 +33,39 @@ $(document).ready(function(){
 		//found the element...so we remove it
 		if(index > -1){
 			selected_numbers.splice(index,1);
+			$("#check_button").prop('disabled',true);
+			game_done = false;			
 		}
 
 		//we add the element to the array
 		//and print in the box "game"
 		else{
-			if(selected_numbers.length <= 5){
-				selected_numbers.push(this.id);			
+
+			if(selected_numbers.length != 6){
+				selected_numbers.push(this.id);
+				//last insertion
+				if(selected_numbers.length == 6){
+					$("#check_button").prop('disabled',false);
+					console.log("Jogo pronto");
+				}
 			}
-			
-			//total number in a game
-			if(selected_numbers.length == 6){
-				$("#check_button").prop('disabled',false);
-				console.log("Jogo pronto");
+
+			else{
 				this.checked = false;
 			}
-
 		}
-		
-		div_numbers.text(selected_numbers);
-
+		if(selected_numbers.length == 0){
+			div_numbers.html("<p>Selecione seis números da tabela para conferir o resultado! </p>");
+		}
+		else{
+			div_numbers.html("<p>" + selected_numbers + "</p>");
+		}
 	});
 
 	var game_values;
 	$("#check_button").click(function(){
 		if(game_values === undefined){
-			alert("Antes de conferir é necessário carregar os valores dos jogos");
+			alert("Antes de conferir é necessário carregar os valores dos jogos anteriores. Para isso clique em carregar");
 		}
 
 		else{
@@ -85,31 +94,32 @@ $(document).ready(function(){
 									'hits':hit});
 					}
 				}
-				if(matches != undefined){
+				console.log(matches);
+				if(matches.length > 0 && matches != undefined){
 					for(m of matches){
 						if(m.hits == 4){
-							console.log("Você ganhou a quadra do concurso: " + m.concurso + " de data: " + m.data + " números do concurso: " + m.jogo);
+							div_result.html("<p>Você acertou a quadra do concurso " + m.concurso + " de data "+ m.data + ". Números sorteados nesse concurso: " + m.jogo + "</p>");
 						}
 
 						else if(m.hits == 5){
-							console.log("Você ganhou a quina do concurso: " + m.concurso + " de data: " + m.data + " números do concurso: " + m.jogo);	
+							div_result.html("<p>Você acertou a quina do concurso " + m.concurso + " de data "+ m.data + ". Números sorteados nesse concurso: " + m.jogo + "</p>");
 						}
 
 						else if(m.hits == 6){
-							console.log("Você ganhou a MEGASENA do concurso: " + m.concurso + " de data: " + m.data + " números do concurso: " + m.jogo);
+							div_result.html("<p>Você acertou a <b>MEGAS-SENA</b> do concurso " + m.concurso + " de data "+ m.data + ". Números sorteados nesse concurso: " + m.jogo + "</p>");
 						}
 					}
 
 				}
 				else{
-					console.log("Não ganhou nd :(");
+					div_result.html("<p>Opa, este jogo nunca foi sorteado na Mega-Sena. Quem sabe essa é a sua vez!</p>");
 				}
 
 			}
-			else{
-				var numbers = 6 - selected_numbers.length;
-				console.log("Termine o jogo antes de conferir! É preciso adicionar mais " + numbers+ " números para terminar");
-			}
+			// else{
+			// 	var numbers = 6 - selected_numbers.length;
+			// 	alert("Termine o jogo antes de conferir! É preciso adicionar mais " + numbers+ " números para terminar");
+			// }
 		}
 
 	});
@@ -138,6 +148,7 @@ $(document).ready(function(){
 		$("input:checkbox").prop("checked",false);
 		$("#check_button").prop('disabled',true);
 
-		div_numbers.text(" ");
+		div_numbers.html("<p>Selecione seis números da tabela para conferir o resultado! </p>");
+		div_result.html("<p>Veja aqui quais jogos você teria acertado!</p>");
 	})
 });
