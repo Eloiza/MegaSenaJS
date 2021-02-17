@@ -57,38 +57,48 @@ $(document).ready(function(){
 			if(selected_numbers.length == 6){
 				console.log("Jogo pronto, vamos conferir B)");
 			
-				var i;
+				var i, j;
 				var hit;
-				var match;
+				var matches = [];
+				//checks if the selected numbers is equal to a previuosly game
 				for(var entry of game_values){
 					hit = 0;
 					for(i=0; i<entry.jogo.length; i++){
-						if(entry.jogo[i] == selected_numbers[i]){
-							hit++;
+						//verifies all the numbers - do not consider the order
+						for(j=0; j<selected_numbers.length; j++){
+							if(entry.jogo[i] == selected_numbers[j]){
+								hit++;
+							}
 						}
 					}
 					if(hit >= 4){
-						match = entry;
-						break;
+						//append a object to the matches list
+						matches.push({'concurso':entry.concurso,
+									'data':entry.data,
+									'jogo':entry.jogo,
+									'hits':hit});
 					}
 				}
-				if(hit >= 4){
-					if(hit == 4){
-						alert("GANHADOR!!! Você ganhou a quadra do concurso " + match.concurso + " de " + match.data);
+				if(matches != undefined){
+					for(m of matches){
+						if(m.hits == 4){
+							console.log("Você ganhou a quadra do concurso: " + m.concurso + " de data: " + m.data + " números do concurso: " + m.jogo);
+						}
 
-					}
-					else if(hit == 5){
-						alert("GANHADOR!!! Você ganhou a quina do concurso " + match.concurso + " de " + match.data);
+						else if(m.hits == 5){
+							console.log("Você ganhou a quina do concurso: " + m.concurso + " de data: " + m.data + " números do concurso: " + m.jogo);	
+						}
 
+						else if(m.hits == 6){
+							console.log("Você ganhou a MEGASENA do concurso: " + m.concurso + " de data: " + m.data + " números do concurso: " + m.jogo);
+						}
 					}
 
-					else{
-						alert("GANHADOR!!! Você ganhou a MEGASENA do concurso " + match.concurso + " de " + match.data);
-					}
 				}
 				else{
-					alert("Não ganhou nd :(");
+					console.log("Não ganhou nd :(");
 				}
+
 			}
 			else{
 				var numbers = 6 - selected_numbers.length;

@@ -10,9 +10,9 @@ Caracteristicas
 
 - [X] Criar um botão "conferir" que só será habilitado quando o elemento "jogo" tiver exatamente seis números. (20 pontos)
 
-- [ ] Criar um botão "carregar" que, ao ser acionado, deve carregar um arquivo json contendo o resultado de todos resultados da mega sena. Este arquivo (formato csv) pode ser encontrado no site da Caixa. A versão json é definida pelo aluno e pode conter informações compiladas para a aplicação ser mais rápida. (20 pontos)
+- [X] Criar um botão "carregar" que, ao ser acionado, deve carregar um arquivo json contendo o resultado de todos resultados da mega sena. Este arquivo (formato csv) pode ser encontrado no site da Caixa. A versão json é definida pelo aluno e pode conter informações compiladas para a aplicação ser mais rápida. (20 pontos)
 
-- [ ] Ao clicar no botão "conferir" deve aparecer a lista de concursos que aquele jogo ganhou a mega-sena, quina e quadra. (20 pontos)
+- [X] Ao clicar no botão "conferir" deve aparecer a lista de concursos que aquele jogo ganhou a mega-sena, quina e quadra. (20 pontos)
 
 - [ ] Questões estéticas são por conta do aluno. (10 pontos)
 
