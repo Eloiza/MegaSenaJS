@@ -47,21 +47,72 @@ $(document).ready(function(){
 
 	});
 
+	var game_values;
 	$("#check_button").click(function(){
-		if(selected_numbers.length == 6){
-			console.log("Jogo pronto, vamos conferir B)");
+		if(game_values === undefined){
+			alert("Antes de conferir é necessário carregar os valores dos jogos");
 		}
+
 		else{
-			var numbers = 6 - selected_numbers.length;
-			console.log("Termine o jogo antes de conferir! É preciso adicionar mais " + numbers+ " números para terminar");
+			if(selected_numbers.length == 6){
+				console.log("Jogo pronto, vamos conferir B)");
+			
+				var i;
+				var hit;
+				var match;
+				for(var entry of game_values){
+					hit = 0;
+					for(i=0; i<entry.jogo.length; i++){
+						if(entry.jogo[i] == selected_numbers[i]){
+							hit++;
+						}
+					}
+					if(hit >= 4){
+						match = entry;
+						break;
+					}
+				}
+				if(hit >= 4){
+					if(hit == 4){
+						alert("GANHADOR!!! Você ganhou a quadra do concurso " + match.concurso + " de " + match.data);
+
+					}
+					else if(hit == 5){
+						alert("GANHADOR!!! Você ganhou a quina do concurso " + match.concurso + " de " + match.data);
+
+					}
+
+					else{
+						alert("GANHADOR!!! Você ganhou a MEGASENA do concurso " + match.concurso + " de " + match.data);
+					}
+				}
+				else{
+					alert("Não ganhou nd :(");
+				}
+			}
+			else{
+				var numbers = 6 - selected_numbers.length;
+				console.log("Termine o jogo antes de conferir! É preciso adicionar mais " + numbers+ " números para terminar");
+			}
 		}
 
 	});
 
 	$("#load_button").click(function(){
-		$("#csv_div").load("test.txt", function(data, status){
-			alert("Data: " + data + "\nStatus: " + status)
-		});
-    
+		jQuery.support.cors = true;
+		$.ajax({
+			type: "GET",
+			dataType: "json",
+			url: "https://eloiza.github.io/dataset/mega_sena_list.json",
+			success: function(data) {
+				console.log("Json Carregado");
+
+				game_values = Object.values(data);
+				console.log(game_values[0].jogo);
+
+	    }, error: function(){
+	        	console.log("json not found");
+	    	}
+		})
 	});
 });
