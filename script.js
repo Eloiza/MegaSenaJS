@@ -22,6 +22,7 @@ $(document).ready(function(){
 
 	var selected_numbers = []
 	let div_numbers = $("#game_numbers");
+
 	$("input:checkbox").click(function(){
 		index = selected_numbers.indexOf(this.id);
 
@@ -125,4 +126,11 @@ $(document).ready(function(){
 	    	}
 		})
 	});
+
+	$("#clear_button").click(function(){
+		console.log("Limpando jogo");
+		selected_numbers = [];
+		$("input:checkbox").prop("checked",false);
+		div_numbers.text(" ");
+	})
 });
