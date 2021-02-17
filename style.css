@@ -1,6 +1,17 @@
-/*something pretty here*/
-html {
-  font-family: sans-serif;
+body {
+font: 20px "Montserrat", sans-serif;
+/*line-height: 2.0;*/
+color: #f5f6f7;
+}
+
+p {
+  font-size: 18px;
+  border: 2px;
+  line-height: 40px;
+  padding-left: 200px;
+  padding-right: 200px;
+  text-align: justify;
+
 }
 
 table, th, td {
@@ -12,10 +23,51 @@ th, td {
 	padding:10px;
 	text-align: center;
 	vertical-align: middle;
+}
 
-
+label{
+	font-family:"arial";
+	font-size: 18px;
 }
 
 table{
 	width:50%;
+}
+
+.container{
+	padding-top: 60px;
+	padding-bottom: 60px;
+	padding-left: 60px
+	margin-left: 300px;
+}
+
+.jumbotron{
+    background-image: url('Imagens/megalogo-menor-menor.png');
+    background-size: 70% 70%;
+    background-repeat: no-repeat;
+
+    /*background-size: cover;*/
+    background-position: center top;
+
+    /*padding:100px;
+  	padding-top: 60px;
+ 	padding-bottom: 60px;
+ 	padding-left: 60px
+	margin-left: 300px;*/
+    height: 350px;
+}
+
+.parallax {
+  /* The image used */
+  background-image: url("Imagens/megalogo-menor-menor.png");
+
+  /* Set a specific height */
+  height: 300px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }

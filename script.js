@@ -6,10 +6,10 @@ function createMegaTable(lin, col){
 	for(i=0; i<6; i++){
 		row += '<tr>';
 		for(j=0; j<10; j++){
-			var checkbox = '<input class="custom-control-input" type="checkbox" id=' + item +' value='+ item + '>';
-			checkbox += '<label class="custom-control-label" for=' + item + '>' + item + '</label>';
+			var checkbox = '<input class="form-check-input" type="checkbox" id=' + item +' value='+ item + '>';
+			checkbox += '<label class="form-check-label" for=' + item + '>' + item + '</label>';
 
-			row += '<td><div class="custom-control" custom-checkbox>' + checkbox + '</div></td>';
+			row += '<td><div class="form-check">' + checkbox + '</div></td>';
 			item++;
 		}
 		row += '</tr>';		
@@ -36,14 +36,17 @@ $(document).ready(function(){
 		//we add the element to the array
 		//and print in the box "game"
 		else{
+			if(selected_numbers.length <= 5){
+				selected_numbers.push(this.id);			
+			}
+			
 			//total number in a game
 			if(selected_numbers.length == 6){
+				$("#check_button").prop('disabled',false);
 				console.log("Jogo pronto");
 				this.checked = false;
 			}
-			else{
-				selected_numbers.push(this.id);
-			}
+
 		}
 		
 		div_numbers.text(selected_numbers);
@@ -133,6 +136,8 @@ $(document).ready(function(){
 		console.log("Limpando jogo");
 		selected_numbers = [];
 		$("input:checkbox").prop("checked",false);
+		$("#check_button").prop('disabled',true);
+
 		div_numbers.text(" ");
 	})
 });
