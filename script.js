@@ -96,19 +96,25 @@ $(document).ready(function(){
 				}
 				console.log(matches);
 				if(matches.length > 0 && matches != undefined){
+					var text = '';
 					for(m of matches){
 						if(m.hits == 4){
-							div_result.html("<p>Você acertou a quadra do concurso " + m.concurso + " de data "+ m.data + ". Números sorteados nesse concurso: " + m.jogo + "</p>");
+							text += "<p>Você acertou a quadra do concurso " + m.concurso + " de data "+ m.data + ". Números sorteados nesse concurso: " + m.jogo + "</p>";
+							console.log("acertou quadra");
 						}
 
 						else if(m.hits == 5){
-							div_result.html("<p>Você acertou a quina do concurso " + m.concurso + " de data "+ m.data + ". Números sorteados nesse concurso: " + m.jogo + "</p>");
+							text += "<p>Você acertou a quina do concurso " + m.concurso + " de data "+ m.data + ". Números sorteados nesse concurso: " + m.jogo + "</p>";
+							console.log("acertou quina");
 						}
 
 						else if(m.hits == 6){
-							div_result.html("<p>Você acertou a <b>MEGAS-SENA</b> do concurso " + m.concurso + " de data "+ m.data + ". Números sorteados nesse concurso: " + m.jogo + "</p>");
+							text += "<p>Você acertou a <b>MEGAS-SENA</b> do concurso " + m.concurso + " de data "+ m.data + ". Números sorteados nesse concurso: " + m.jogo + "</p>";
+							console.log("acertou sena");
+						
 						}
 					}
+					div_result.html(text);
 
 				}
 				else{
@@ -116,10 +122,6 @@ $(document).ready(function(){
 				}
 
 			}
-			// else{
-			// 	var numbers = 6 - selected_numbers.length;
-			// 	alert("Termine o jogo antes de conferir! É preciso adicionar mais " + numbers+ " números para terminar");
-			// }
 		}
 
 	});
@@ -132,9 +134,8 @@ $(document).ready(function(){
 			url: "https://eloiza.github.io/dataset/mega_sena_list.json",
 			success: function(data) {
 				console.log("Json Carregado");
-
 				game_values = Object.values(data);
-				console.log(game_values[0].jogo);
+				alert("Dados carregados com sucesso!");
 
 	    }, error: function(){
 	        	console.log("json not found");
