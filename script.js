@@ -178,12 +178,6 @@ $(document).ready(function(){
 	        	console.log("json not found");
 	    	}
 		});
-
-		if(game_values != undefined){
-			//calculate the probability for each number be picked 
-						
-		}
-
 	});
 
 	$("#clear_button").click(function(){

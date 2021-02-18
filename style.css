@@ -45,21 +45,6 @@ table{
 	width:50%;
 }
 
-#button-container{
-	padding:10px;
-}
-
-#container-game{
-	padding: 10px;
-}
-
-#game_numbers{
-	padding: 10px;
-}
-
-#result_div{
-	padding: 10px;
-}
 #game_table{
 	margin-left: auto;
  	margin-right: auto;
@@ -67,11 +52,15 @@ table{
 	alignment-baseline: center;
 }
 
-.container-fluid{
+.text-container{
 	padding-top: 60px;
 	padding-bottom: 60px;
 	padding-left: 60px
 	margin-left: 300px;
+}
+
+.container-fluid{
+	padding: 10px;
 }
 
 .jumbotron{
