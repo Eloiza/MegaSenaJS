@@ -45,6 +45,7 @@ $(document).ready(function(){
 	var selected_numbers = []
 	let div_numbers = $("#game_numbers");
 	let div_result = $("#result_div");
+	let div_hint = $("#hint_div");
 
 	$("input:checkbox").on({
 		
@@ -93,9 +94,8 @@ $(document).ready(function(){
 				numbers_frequency = calculateProbabilities(game_values);
 			}
 
-			var cell = $(this).find('input').attr('id');
-			console.log(cell);
-			// console.log(probabilities);
+			var num = $(this).find('input').attr('id');
+			div_hint.html("<p>O número " + num + " foi sorteado em " + numbers_frequency[num.toString()] + " vezes nos " + game_values.length + " jogos realizados.</p>");
 		}
 
 	});

@@ -16,4 +16,4 @@ Caracteristicas
 
 - [X] Questões estéticas são por conta do aluno. (10 pontos)
 
-- [ ] Incluir alguma ação relevate com o evento "mouseover", como por exemplo o número de concursos que o número foi sorteado. (10 pontos)
+- [X] Incluir alguma ação relevate com o evento "mouseover", como por exemplo o número de concursos que o número foi sorteado. (10 pontos)
