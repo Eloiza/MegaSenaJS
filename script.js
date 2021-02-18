@@ -58,26 +58,29 @@ $(document).ready(function(){
 				$("#check_button").prop('disabled',true);		
 			}
 
-			//we add the element to the array
-			//and print in the box "game"
+			//Add the element to the array and print in the box "game"
 			else{
 
 				if(selected_numbers.length != 6){
 					selected_numbers.push(this.id);
-					//last insertion
+					//handle last insertion
 					if(selected_numbers.length == 6){
 						$("#check_button").prop('disabled',false);
 						console.log("Jogo pronto");
 					}
 				}
 
+				//disable all chekbox to check if a game is done
 				else{
 					this.checked = false;
 				}
 			}
+			//default message when there is no number to show
 			if(selected_numbers.length == 0){
 				div_numbers.html("<p>Selecione seis números da tabela para conferir o resultado! </p>");
 			}
+
+			//show a message with the selected numbers
 			else{
 				div_numbers.html("<p>" + selected_numbers + "</p>");
 			}
@@ -85,27 +88,34 @@ $(document).ready(function(){
 
 	});
 
+	//handle the mouse over a number to show its frequency
 	$('td').find('div').mouseenter(function(){
+		//check if the mega games were loaded
 		if(game_values === undefined){
 			console.log("É preciso carregar os dados para ver as probabilidades");
 		}
 		else{
+			//if first time here calculate the frequency
 			if(numbers_frequency === undefined){
 				numbers_frequency = calculateProbabilities(game_values);
 			}
-
+			//get the frequency of the 'selected" number
 			var num = $(this).find('input').attr('id');
+
+			//print that in the hint box
 			div_hint.html("<p>O número " + num + " foi sorteado em " + numbers_frequency[num.toString()] + " vezes nos " + game_values.length + " jogos realizados.</p>");
 		}
 
 	});
 	
 	$("#check_button").click(function(){
+		//check if the mega geames were loaded
 		if(game_values === undefined){
 			alert("Antes de conferir é necessário carregar os valores dos jogos anteriores. Para isso clique em carregar");
 		}
 
 		else{
+			//if a game were complete check it
 			if(selected_numbers.length == 6){
 				console.log("Jogo pronto, vamos conferir B)");
 			
@@ -132,7 +142,9 @@ $(document).ready(function(){
 					}
 				}
 				console.log(matches);
+				//if there was any match
 				if(matches.length > 0 && matches != undefined){
+					//prepare a message to show to the user
 					var text = '';
 					for(m of matches){
 						if(m.hits == 4){
@@ -151,9 +163,11 @@ $(document).ready(function(){
 						
 						}
 					}
+					//print the resultant string in the result div
 					div_result.html(text);
 
 				}
+				//case there was any match
 				else{
 					div_result.html("<p>Opa, este jogo nunca foi sorteado na Mega-Sena. Quem sabe essa é a sua vez!</p>");
 				}
@@ -163,8 +177,10 @@ $(document).ready(function(){
 
 	});
 
+	//loads the dataset
 	$("#load_button").click(function(){
 		jQuery.support.cors = true;
+		//case first time here load the data
 		if(game_values == undefined){
 			$.ajax({
 				type: "GET",
@@ -180,11 +196,13 @@ $(document).ready(function(){
 		    	}
 			});
 		}
+		//warn user that the data is there
 		else{
 			alert("Dados ja carregados!");
 		}
 	});
 
+	//cleans the game - erase all the numbers selected
 	$("#clear_button").click(function(){
 		console.log("Limpando jogo");
 		selected_numbers = [];
