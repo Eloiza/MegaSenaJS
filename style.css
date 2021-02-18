@@ -52,6 +52,16 @@ table{
 	alignment-baseline: center;
 }
 
+#footer_div{
+	padding-top: 30px;
+	padding-bottom: 30;
+}
+
+.bg-grey{
+  background-color: #474e5d;
+  color:#ffffff;
+}
+
 .text-container{
 	padding-top: 60px;
 	padding-bottom: 60px;
@@ -60,7 +70,10 @@ table{
 }
 
 .container-fluid{
-	padding: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-left: 0px;
+	padding-left: 0px;
 }
 
 .jumbotron{

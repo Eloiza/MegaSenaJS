@@ -91,10 +91,7 @@ $(document).ready(function(){
 	//handle the mouse over a number to show its frequency
 	$('td').find('div').mouseenter(function(){
 		//check if the mega games were loaded
-		if(game_values === undefined){
-			console.log("É preciso carregar os dados para ver as probabilidades");
-		}
-		else{
+		if(game_values != undefined){
 			//if first time here calculate the frequency
 			if(numbers_frequency === undefined){
 				numbers_frequency = calculateProbabilities(game_values);
@@ -209,6 +206,7 @@ $(document).ready(function(){
 		$("input:checkbox").prop("checked",false);
 		$("#check_button").prop('disabled',true);
 
+		div_hint.html("<p>Ao clicar em carregar basta passar o mouse em cima de um número para ver aqui quantas vezes ele foi sorteado!</p>");
 		div_numbers.html("<p>Selecione seis números da tabela para conferir o resultado! </p>");
 		div_result.html("<p>Veja aqui quais jogos você teria acertado!</p>");
 	})
