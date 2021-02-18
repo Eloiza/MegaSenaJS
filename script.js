@@ -165,19 +165,24 @@ $(document).ready(function(){
 
 	$("#load_button").click(function(){
 		jQuery.support.cors = true;
-		$.ajax({
-			type: "GET",
-			dataType: "json",
-			url: "https://eloiza.github.io/dataset/mega_sena_list.json",
-			success: function(data) {
-				game_values = Object.values(data);
-				console.log(game_values);
-				alert("Dados carregados com sucesso!");
+		if(game_values == undefined){
+			$.ajax({
+				type: "GET",
+				dataType: "json",
+				url: "https://eloiza.github.io/dataset/mega_sena_list.json",
+				success: function(data) {
+					game_values = Object.values(data);
+					console.log(game_values);
+					alert("Dados carregados com sucesso!");
 
-	  		}, error: function(){
-	        	console.log("json not found");
-	    	}
-		});
+		  		}, error: function(){
+		        	console.log("json not found");
+		    	}
+			});
+		}
+		else{
+			alert("Dados ja carregados!");
+		}
 	});
 
 	$("#clear_button").click(function(){
