@@ -18,51 +18,87 @@ function createMegaTable(lin, col){
 	table.html(row);
 }
 
+function calculateProbabilities(values){
+	var probabilities = {};
+
+	//initiates the object
+	for(var j=1; j<=60; j++){
+		probabilities[j.toString()] = 0;
+	}
+
+	//count all numbers in all games
+	for(var game of values){
+		for(var i=0; i< game.jogo.length; i++){
+			probabilities[game.jogo[i].toString()] += 1;
+		};
+	};
+	console.log(probabilities);	
+	return probabilities;
+};
+
 $(document).ready(function(){
 	createMegaTable(6,10);
-	var all_games;
+	var game_values;
+	var probabilities;
 
 	var selected_numbers = []
 	let div_numbers = $("#game_numbers");
 	let div_result = $("#result_div");
-	var game_done = false;
 
-	$("input:checkbox").click(function(){
-		index = selected_numbers.indexOf(this.id);
+	$("input:checkbox").on({
+		
+		click: function(){
+			index = selected_numbers.indexOf(this.id);
 
-		//found the element...so we remove it
-		if(index > -1){
-			selected_numbers.splice(index,1);
-			$("#check_button").prop('disabled',true);
-			game_done = false;			
-		}
+			//found the element...so we remove it
+			if(index > -1){
+				selected_numbers.splice(index,1);
+				$("#check_button").prop('disabled',true);		
+			}
 
-		//we add the element to the array
-		//and print in the box "game"
-		else{
+			//we add the element to the array
+			//and print in the box "game"
+			else{
 
-			if(selected_numbers.length != 6){
-				selected_numbers.push(this.id);
-				//last insertion
-				if(selected_numbers.length == 6){
-					$("#check_button").prop('disabled',false);
-					console.log("Jogo pronto");
+				if(selected_numbers.length != 6){
+					selected_numbers.push(this.id);
+					//last insertion
+					if(selected_numbers.length == 6){
+						$("#check_button").prop('disabled',false);
+						console.log("Jogo pronto");
+					}
+				}
+
+				else{
+					this.checked = false;
 				}
 			}
-
+			if(selected_numbers.length == 0){
+				div_numbers.html("<p>Selecione seis números da tabela para conferir o resultado! </p>");
+			}
 			else{
-				this.checked = false;
+				div_numbers.html("<p>" + selected_numbers + "</p>");
 			}
 		}
-		if(selected_numbers.length == 0){
-			div_numbers.html("<p>Selecione seis números da tabela para conferir o resultado! </p>");
-		}
-		else{
-			div_numbers.html("<p>" + selected_numbers + "</p>");
-		}
+
 	});
 
-	var game_values;
+	$('td').find('div').mouseenter(function(){
+		if(game_values === undefined){
+			console.log("É preciso carregar os dados para ver as probabilidades");
+		}
+		else{
+			if(probabilities === undefined){
+				probabilities = calculateProbabilities(game_values);
+			}
+
+			var cell = $(this).find('input').attr('id');
+			console.log(cell);
+			// console.log(probabilities);
+		}
+
+	});
+	
 	$("#check_button").click(function(){
 		if(game_values === undefined){
 			alert("Antes de conferir é necessário carregar os valores dos jogos anteriores. Para isso clique em carregar");
@@ -133,14 +169,20 @@ $(document).ready(function(){
 			dataType: "json",
 			url: "https://eloiza.github.io/dataset/mega_sena_list.json",
 			success: function(data) {
-				console.log("Json Carregado");
 				game_values = Object.values(data);
+				console.log(game_values);
 				alert("Dados carregados com sucesso!");
 
-	    }, error: function(){
+	  		}, error: function(){
 	        	console.log("json not found");
 	    	}
-		})
+		});
+
+		if(game_values != undefined){
+			//calculate the probability for each number be picked 
+						
+		}
+
 	});
 
 	$("#clear_button").click(function(){
