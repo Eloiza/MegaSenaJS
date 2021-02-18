@@ -19,27 +19,28 @@ function createMegaTable(lin, col){
 }
 
 function calculateProbabilities(values){
-	var probabilities = {};
+	var numbers_frequency = {};
 
 	//initiates the object
 	for(var j=1; j<=60; j++){
-		probabilities[j.toString()] = 0;
+		numbers_frequency[j.toString()] = 0;
 	}
 
 	//count all numbers in all games
 	for(var game of values){
 		for(var i=0; i< game.jogo.length; i++){
-			probabilities[game.jogo[i].toString()] += 1;
+			numbers_frequency[game.jogo[i].toString()]++;
 		};
 	};
-	console.log(probabilities);	
-	return probabilities;
+
+	console.log(numbers_frequency);	
+	return numbers_frequency;
 };
 
 $(document).ready(function(){
 	createMegaTable(6,10);
 	var game_values;
-	var probabilities;
+	var numbers_frequency;
 
 	var selected_numbers = []
 	let div_numbers = $("#game_numbers");
@@ -88,8 +89,8 @@ $(document).ready(function(){
 			console.log("É preciso carregar os dados para ver as probabilidades");
 		}
 		else{
-			if(probabilities === undefined){
-				probabilities = calculateProbabilities(game_values);
+			if(numbers_frequency === undefined){
+				numbers_frequency = calculateProbabilities(game_values);
 			}
 
 			var cell = $(this).find('input').attr('id');
